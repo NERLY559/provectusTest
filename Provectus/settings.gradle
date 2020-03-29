@@ -1,0 +1,2 @@
+rootProject.name='Provectus'
+include ':app'
