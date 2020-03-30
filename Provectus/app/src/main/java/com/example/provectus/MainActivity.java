@@ -76,55 +76,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.O
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        //namee = (TextView)findViewById(R.id.textViewName);
-        //genderr = (TextView)findViewById(R.id.textViewGender);
-        //emaill = (TextView)findViewById(R.id.textViewEmail);
         userList = new ArrayList<>();
-        //getUser();
         loadData();
     }
 
-    public void getUser() {
-        final String URL = "https://randomuser.me/api/?results=20";
-
-        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONArray("results");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject results = jsonArray.getJSONObject(i);
-                        String email = results.getString("email");
-                        String gender = results.getString("gender");
-
-                        JSONObject name = results.getJSONObject("name");
-                        String first = name.getString("first");
-                        String last = name.getString("last");
-
-                       // User user = new User(email, gender, first, last);
-
-                       // adapter = new RecyclerAdapter(MainActivity.this, user);
-                       // recyclerView.setAdapter(adapter);
-
-
-//                        namee.setText(first + " " + last);
-//                        genderr.setText(gender);
-//                        emaill.setText(email);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ddd", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        requestQueue.add(request);
-
-    }
 
     public void loadData() {
         final String URL = "https://randomuser.me/api/?results=20";
